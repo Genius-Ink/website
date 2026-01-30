@@ -1,26 +1,96 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-white text-primary-900 antialiased;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-bold;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .btn-primary {
+    @apply px-8 py-4 bg-accent-orange text-white font-semibold rounded-xl hover:bg-accent-coral transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 inline-flex items-center gap-2;
+  }
+  
+  .btn-secondary {
+    @apply px-8 py-4 border-2 border-primary-900 text-primary-900 font-semibold rounded-xl hover:bg-primary-900 hover:text-white transition-all duration-300 inline-flex items-center gap-2;
+  }
+  
+  .btn-outline {
+    @apply px-8 py-4 border-2 border-white/30 text-white font-semibold rounded-xl hover:bg-white hover:text-primary-900 transition-all duration-300 inline-flex items-center gap-2 backdrop-blur-sm;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32;
+  }
+  
+  .card {
+    @apply bg-white rounded-3xl p-8 lg:p-10 shadow-sm hover:shadow-xl transition-all duration-500 border border-primary-100;
+  }
+  
+  .gradient-text {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-accent-orange to-brand-teal;
+  }
+  
+  .hero-background {
+    background: linear-gradient(135deg, rgba(255, 92, 57, 0.03) 0%, rgba(13, 148, 136, 0.03) 100%);
+  }
+  
+  .card-feature {
+    @apply relative overflow-hidden rounded-3xl p-8 lg:p-10 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl;
+  }
+  
+  .tag {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
