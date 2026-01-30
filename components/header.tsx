@@ -1,19 +1,20 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { useState } from "react";
+import Link from "next/link";
+import { Menu, X, ChevronDown } from "lucide-react";
+import Image from "next/image";
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navigation = [
-    { name: 'Products', href: '#products', hasDropdown: true },
-    { name: 'Company', href: '#company', hasDropdown: true },
-    { name: 'Use Cases', href: '#use-cases', hasDropdown: true },
-    { name: 'Tools', href: '#tools', hasDropdown: true },
-    { name: 'Blog', href: '#blog' },
-  ]
+    { name: "Products", href: "#products", hasDropdown: true },
+    { name: "Company", href: "#company", hasDropdown: true },
+    { name: "Use Cases", href: "#use-cases", hasDropdown: true },
+    { name: "Tools", href: "#tools", hasDropdown: true },
+    { name: "Blog", href: "#blog" },
+  ];
 
   return (
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-lg z-50 border-b border-primary-100">
@@ -21,10 +22,17 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-accent-orange to-accent-coral rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all">
-              <span className="text-white font-bold text-xl">G</span>
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all">
+              <Image
+                src="/images/logo.jpeg"
+                alt="GeniusRails Logo"
+                fill
+                className="object-cover"
+              />
             </div>
-            <span className="font-display font-bold text-2xl text-primary-900">GeniusRails</span>
+            <span className="font-display font-bold text-2xl text-primary-900">
+              GeniusRails
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -37,7 +45,10 @@ export default function Header() {
               >
                 {item.name}
                 {item.hasDropdown && (
-                  <ChevronDown size={16} className="opacity-50 group-hover:opacity-100 transition-opacity" />
+                  <ChevronDown
+                    size={16}
+                    className="opacity-50 group-hover:opacity-100 transition-opacity"
+                  />
                 )}
               </Link>
             ))}
@@ -79,7 +90,10 @@ export default function Header() {
               </Link>
             ))}
             <div className="flex flex-col gap-3 pt-4 border-t border-primary-100">
-              <Link href="#login" className="text-primary-900 font-semibold py-2">
+              <Link
+                href="#login"
+                className="text-primary-900 font-semibold py-2"
+              >
                 Sign In
               </Link>
               <Link href="#beta" className="btn-primary justify-center">
@@ -90,5 +104,5 @@ export default function Header() {
         )}
       </nav>
     </header>
-  )
+  );
 }
